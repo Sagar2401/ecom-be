@@ -1,0 +1,181 @@
+{
+  "info": {
+    "name": "E-commerce Store API",
+    "description": "Cart, checkout, discounts, and admin APIs.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000" },
+    { "key": "cartId", "value": "" },
+    { "key": "productId", "value": "" },
+    { "key": "discountCode", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "GET /health",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["health"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "GET /api/products",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/products",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "products"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Cart",
+      "item": [
+        {
+          "name": "POST /api/cart (create cart)",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/api/cart",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "cart"]
+            }
+          }
+        },
+        {
+          "name": "GET /api/cart/:cartId",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/cart/{{cartId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "cart", "{{cartId}}"]
+            }
+          }
+        },
+        {
+          "name": "POST /api/cart/:cartId/items (add item)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"{{productId}}\",\n  \"quantity\": 2\n}\n"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/cart/{{cartId}}/items",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "cart", "{{cartId}}", "items"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Checkout",
+      "item": [
+        {
+          "name": "POST /api/checkout/quote (preview totals with code)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cartId\": \"{{cartId}}\",\n  \"discountCode\": \"{{discountCode}}\"\n}\n"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/checkout/quote",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "checkout", "quote"]
+            }
+          }
+        },
+        {
+          "name": "POST /api/checkout (place order)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cartId\": \"{{cartId}}\",\n  \"discountCode\": \"{{discountCode}}\"\n}\n"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/checkout",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "checkout"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "GET /api/admin/settings",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/settings",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "settings"]
+            }
+          }
+        },
+        {
+          "name": "PATCH /api/admin/settings (update n and %)",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ordersPerCoupon\": 3,\n  \"couponDiscountPercent\": 10\n}\n"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/settings",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "settings"]
+            }
+          }
+        },
+        {
+          "name": "POST /api/admin/discount-codes/generate",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/discount-codes/generate",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "discount-codes", "generate"]
+            }
+          }
+        },
+        {
+          "name": "GET /api/admin/stats",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "stats"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

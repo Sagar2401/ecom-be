@@ -23,7 +23,6 @@ cd server
 cp .env.example .env
 # Edit .env — set MONGODB_URI if not using local default
 npm install
-npm run seed   # optional: sample products + default n=3, x=10%
 npm start
 ```
 
@@ -70,11 +69,6 @@ curl -s -X POST http://localhost:3000/api/admin/discount-codes/generate
 curl -s http://localhost:3000/api/admin/stats
 ```
 
-## Tests
-
-```bash
-npm test
-```
 
 Uses Node’s built-in test runner against pure discount/milestone logic (no DB required).
 

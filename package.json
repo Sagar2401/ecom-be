@@ -1,0 +1,22 @@
+{
+  "name": "ecommerce-store-api",
+  "version": "1.0.0",
+  "description": "Cart, checkout, and discount APIs with MongoDB",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "seed": "node src/scripts/seed.js",
+    "test": "node --test tests/discountLogic.test.js"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "mongoose": "^8.7.0"
+  }
+}
